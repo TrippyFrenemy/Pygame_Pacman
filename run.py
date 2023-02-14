@@ -27,3 +27,10 @@ class GameController(object):
 
     def render(self):
         pygame.display.update()
+
+
+if __name__ == "__main__":
+    game = GameController()
+    game.startGame()
+    while True:
+        game.update()
