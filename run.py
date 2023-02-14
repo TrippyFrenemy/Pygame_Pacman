@@ -20,14 +20,10 @@ class GameController(object):
         self.checkEvents()
         self.render()
 
-
-
-
-
-
-
     def checkEvents(self):
-        pass
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                exit()
 
     def render(self):
-        pass
+        pygame.display.update()
