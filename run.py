@@ -8,6 +8,7 @@ class GameController(object):
         pygame.init()
         self.screen = pygame.display.set_mode(SCREENSIZE, 0, 32)
         self.background = None
+        self.clock = pygame.time.Clock()
 
     def setBackground(self):
         self.background = pygame.surface.Surface(SCREENSIZE).convert()
@@ -17,6 +18,7 @@ class GameController(object):
         self.setBackground()
 
     def update(self):
+        dt = self.clock.tick(30) / 1000.0
         self.checkEvents()
         self.render()
 
