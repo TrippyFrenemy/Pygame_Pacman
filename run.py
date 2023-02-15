@@ -5,7 +5,7 @@ from constants import *
 
 from pacman import Pacman
 from nodes import NodeGroup
-
+from ghosts import Ghost
 
 class GameController(object):
     def __init__(self):
@@ -23,10 +23,12 @@ class GameController(object):
         self.nodes = NodeGroup("maze1.txt")
         self.nodes.setPortalPair((0, 17), (27, 17))
         self.pacman = Pacman(self.nodes.getStartTempNode())
+        self.ghost = Ghost(self.nodes.getStartTempNode())
 
     def update(self):
         dt = self.clock.tick(30) / 1000.0
         self.pacman.update(dt)
+        self.ghost.update(dt)
         self.checkEvents()
         self.render()
 
@@ -39,6 +41,7 @@ class GameController(object):
         self.screen.blit(self.background, (0, 0))
         self.nodes.render(self.screen)
         self.pacman.render(self.screen)
+        self.ghost.render(self.screen)
         pygame.display.update()
 
 
