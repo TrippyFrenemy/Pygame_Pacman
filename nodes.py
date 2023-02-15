@@ -29,7 +29,7 @@ class NodeGroup(object):
         self.connectVertically(data)
 
     def render(self, screen):
-        for node in self.nodeList:
+        for node in self.nodesLUT.values():
             node.render(screen)
 
     def readMazeFile(self, textfile):
@@ -86,3 +86,7 @@ class NodeGroup(object):
         if (x, y) in self.nodesLUT.keys():
             return self.nodesLUT[(x, y)]
         return None
+
+    def getStartTempNode(self):
+        nodes = list(self.nodesLUT.values())
+        return nodes[0]
