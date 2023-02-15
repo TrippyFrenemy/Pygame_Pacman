@@ -20,6 +20,8 @@ class Entity(object):
         self.target = node
         self.visible = True
         self.disablePortal = False
+        self.goal = None
+        self.directionMethod = self.randomDirection
 
     def setPosition(self):
         self.position = self.node.position.copy()
@@ -63,4 +65,35 @@ class Entity(object):
         if self.visible:
             p = self.position.asInt()
             pygame.draw.circle(screen, self.color, p, self.radius)
+
+    def update(self, dt):
+        self.position += self.directions[self.direction] * self.speed * dt
+
+        if self.overshotTarget():
+            self.node = self.target
+            directions = self.validDirections()
+            direction = self.directionMethod(directions)
+            if not self.disablePortal:
+                if self.node.neighbors[PORTAL] is not None:
+                    self.node = self.node.neighbors[PORTAL]
+            self.target = self.getNewTarget(direction)
+            if self.target is not self.node:
+                self.direction = direction
+            else:
+                self.target = self.getNewTarget(self.direction)
+
+            self.setPosition()
+
+    def validDirections(self):
+        directions = []
+        for key in [UP, DOWN, LEFT, RIGHT]:
+            if self.validDirection(key):
+                if key != self.direction * -1:
+                    directions.append(key)
+        if len(directions) == 0:
+            directions.append(self.direction * -1)
+        return directions
+
+    def randomDirection(self, directions):
+        return directions[randint(0, len(directions) - 1)]
 
