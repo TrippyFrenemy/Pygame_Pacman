@@ -14,15 +14,22 @@ class Pacman(object):
         self.color = YELLOW
         self.node = node
         self.setPosition()
+        self.target = node
 
     def setPosition(self):
         self.position = self.node.position.copy()
 
     def update(self, dt):
+        self.position += self.directions[self.direction] * self.speed * dt
         direction = self.getValidKey()
-        self.direction = direction
-        self.node = self.getNewTarget(direction)
-        self.setPosition()
+        if self.overshotTarget():
+            self.node = self.target
+            self.target = self.getNewTarget(direction)
+            if self.target is not self.node:
+                self.direction = direction
+            else:
+                self.direction = STOP
+            self.setPosition()
 
     def getValidKey(self):
         key_pressed = pygame.key.get_pressed()
