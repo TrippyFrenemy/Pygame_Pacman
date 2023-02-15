@@ -16,6 +16,13 @@ class GameController(object):
         self.background = None
         self.clock = pygame.time.Clock()
         self.fruit = None
+        self.level = 0
+
+    def nextLevel(self):
+        self.showEntities()
+        self.level += 1
+        self.pause.paused = True
+        self.startGame()
         self.pause = Pause(True)
         self.level = 0
         self.lives = 5
