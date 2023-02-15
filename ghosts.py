@@ -6,7 +6,7 @@ from entity import Entity
 from modes import ModeController
 
 class Ghost(Entity):
-    def __init__(self, node, pacman=None):
+    def __init__(self, node, pacman=None, blinky = None):
         Entity.__init__(self, node)
         self.name = GHOST
         self.points = 200
@@ -14,6 +14,8 @@ class Ghost(Entity):
         self.directionMethod = self.goalDirection
         self.pacman = pacman
         self.mode = ModeController(self)
+        self.blinky = blinky
+        self.homeNode = node
 
     def goalDirection(self, directions):
         distances = []
@@ -59,4 +61,53 @@ class Ghost(Entity):
             self.setSpeed(150)
             self.directionMethod = self.goalDirection
             self.spawn()
+
+class Blinky(Ghost):
+    def __init__(self, node, pacman=None, blinky=None):
+        Ghost.__init__(self, node, pacman, blinky)
+        self.name = BLINKY
+        self.color = RED
+
+class Pinky(Ghost):
+    def __init__(self, node, pacman=None, blinky=None):
+        Ghost.__init__(self, node, pacman, blinky)
+        self.name = PINKY
+        self.color = PINK
+
+    def scatter(self):
+        self.goal = Vector2(TILEWIDTH*NCOLS, 0)
+
+    def chase(self):
+        self.goal = self.pacman.position + self.pacman.directions[self.pacman.direction] * TILEWIDTH * 4
+
+class Inky(Ghost):
+    def __init__(self, node, pacman=None, blinky=None):
+        Ghost.__init__(self, node, pacman, blinky)
+        self.name = INKY
+        self.color = TEAL
+
+    def scatter(self):
+        self.goal = Vector2(TILEWIDTH*NCOLS, TILEHEIGHT*NROWS)
+
+    def chase(self):
+        vec1 = self.pacman.position + self.pacman.directions[self.pacman.direction] * TILEWIDTH * 2
+        vec2 = (vec1 - self.blinky.position) * 2
+        self.goal = self.blinky.position + vec2
+
+class Clyde(Ghost):
+    def __init__(self, node, pacman=None, blinky=None):
+        Ghost.__init__(self, node, pacman, blinky)
+        self.name = CLYDE
+        self.color = ORANGE
+
+    def scatter(self):
+        self.goal = Vector2(0, TILEHEIGHT*NROWS)
+
+    def chase(self):
+        d = self.pacman.position - self.position
+        ds = d.magnitudeSquared()
+        if ds <= (TILEWIDTH * 8)**2:
+            self.scatter()
+        else:
+            self.goal = self.pacman.position + self.pacman.directions[self.pacman.direction] * TILEWIDTH * 4
 
