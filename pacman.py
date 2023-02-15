@@ -3,6 +3,7 @@ from pygame.locals import *
 from vector import Vector2
 from constants import *
 
+
 class Pacman(object):
     def __init__(self, node):
         self.name = PACMAN
@@ -49,3 +50,12 @@ class Pacman(object):
         if self.validDirection(direction):
             return self.node.neighbors[direction]
         return self.node
+
+    def overshotTarget(self):
+        if self.target is not None:
+            vec1 = self.target.position - self.node.position
+            vec2 = self.position - self.node.position
+            node2Target = vec1.magnitudeSquared()
+            node2Self = vec2.magnitudeSquared()
+            return node2Self >= node2Target
+        return False
