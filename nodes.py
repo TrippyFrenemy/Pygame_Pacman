@@ -76,3 +76,13 @@ class NodeGroup(object):
                 elif dataT[col][row] not in self.pathSymbols:
                     key = None
 
+    def getNodeFromPixels(self, xpixel, ypixel):
+        if (xpixel, ypixel) in self.nodesLUT.keys():
+            return self.nodesLUT[(xpixel, ypixel)]
+        return None
+
+    def getNodeFromTiles(self, col, row):
+        x, y = self.constructKey(col, row)
+        if (x, y) in self.nodesLUT.keys():
+            return self.nodesLUT[(x, y)]
+        return None
