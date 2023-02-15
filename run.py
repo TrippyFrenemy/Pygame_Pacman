@@ -28,6 +28,7 @@ class GameController(object):
         self.pacman = Pacman(self.nodes.getStartTempNode())
         self.pellets = PelletGroup("maze1.txt")
         self.ghost = Ghost(self.nodes.getStartTempNode(), self.pacman)
+        self.ghost.setSpawnNode(self.nodes.getNodeFromTiles(2 + 11.5, 3 + 14))
 
 
     def update(self):
@@ -36,6 +37,7 @@ class GameController(object):
         self.ghost.update(dt)
         self.pellets.update(dt)
         self.checkPelletEvents()
+        self.checkGhostEvents()
         self.checkEvents()
         self.render()
 
@@ -59,6 +61,11 @@ class GameController(object):
             self.pellets.pelletList.remove(pellet)
             if pellet.name == POWERPELLET:
                 self.ghost.startFreight()
+
+    def checkGhostEvents(self):
+        if self.pacman.collideGhost(self.ghost):
+            if self.ghost.mode.current is FREIGHT:
+                self.ghost.startSpawn()
 
 
 if __name__ == "__main__":
