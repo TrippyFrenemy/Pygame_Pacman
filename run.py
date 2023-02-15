@@ -16,7 +16,22 @@ class GameController(object):
         self.background = None
         self.clock = pygame.time.Clock()
         self.fruit = None
+        self.pause = Pause(True)
         self.level = 0
+        self.lives = 5
+
+    def restartGame(self):
+        self.lives = 5
+        self.level = 0
+        self.pause.paused = True
+        self.fruit = None
+        self.startGame()
+
+    def resetLevel(self):
+        self.pause.paused = True
+        self.pacman.reset()
+        self.ghosts.reset()
+        self.fruit = None
 
     def nextLevel(self):
         self.showEntities()
@@ -79,11 +94,12 @@ class GameController(object):
                 exit()
             elif event.type == KEYDOWN:
                 if event.key == K_SPACE:
-                    self.pause.setPause(playerPaused=True)
-                    if not self.pause.paused:
-                        self.showEntities()
-                    else:
-                        self.hideEntities()
+                    if self.pacman.alive:
+                        self.pause.setPause(playerPaused=True)
+                        if not self.pause.paused:
+                            self.showEntities()
+                        else:
+                            self.hideEntities()
 
     def render(self):
         self.screen.blit(self.background, (0, 0))
