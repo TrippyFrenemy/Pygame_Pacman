@@ -23,10 +23,8 @@ class GameController(object):
         self.nodes = NodeGroup("maze1.txt")
         self.nodes.setPortalPair((0, 17), (27, 17))
         self.pacman = Pacman(self.nodes.getStartTempNode())
-
         self.pellets = PelletGroup("maze1.txt")
-
-        self.ghost = Ghost(self.nodes.getStartTempNode())
+        self.ghost = Ghost(self.nodes.getStartTempNode(), self.pacman)
 
 
     def update(self):

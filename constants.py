@@ -32,3 +32,8 @@ GHOST = 3
 
 PORTAL = 3
 
+
+SCATTER = 0
+CHASE = 1
+FREIGHT = 2
+SPAWN = 3
