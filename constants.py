@@ -20,6 +20,7 @@ LEFT = 2
 RIGHT = -2
 
 PACMAN = 0
+GHOST = 3
 
 PORTAL = 3
 
