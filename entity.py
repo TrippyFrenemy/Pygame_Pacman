@@ -108,3 +108,7 @@ class Entity(object):
     def randomDirection(self, directions):
         return directions[randint(0, len(directions) - 1)]
 
+    def setBetweenNodes(self, direction):
+        if self.node.neighbors[direction] is not None:
+            self.target = self.node.neighbors[direction]
+            self.position = (self.node.position + self.target.position) / 2.0
