@@ -28,8 +28,15 @@ class Pacman(object):
             if self.target is not self.node:
                 self.direction = direction
             else:
+                self.target = self.getNewTarget(self.direction)
+
+            if self.target is self.node:
                 self.direction = STOP
             self.setPosition()
+        else:
+            if self.oppositeDirection(direction):
+                self.reverseDirection()
+
 
     def getValidKey(self):
         key_pressed = pygame.key.get_pressed()
