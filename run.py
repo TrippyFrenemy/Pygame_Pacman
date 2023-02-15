@@ -130,6 +130,15 @@ class GameController(object):
                     ghost.visible = False
                     self.pause.setPause(pauseTime=1, func=self.showEntities)
                     ghost.startSpawn()
+                elif ghost.mode.current is not SPAWN:
+                    if self.pacman.alive:
+                        self.lives -= 1
+                        self.pacman.die()
+                        self.ghosts.hide()
+                        if self.lives <= 0:
+                            self.pause.setPause(pauseTime=3, func=self.restartGame)
+                        else:
+                            self.pause.setPause(pauseTime=3, func=self.resetLevel)
 
     def showEntities(self):
         self.pacman.visible = True
