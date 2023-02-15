@@ -59,3 +59,20 @@ class NodeGroup(object):
                         key = otherkey
                 elif data[row][col] not in self.pathSymbols:
                     key = None
+
+    def connectVertically(self, data, xoffset=0, yoffset=0):
+        dataT = data.transpose()
+        for col in list(range(dataT.shape[0])):
+            key = None
+            for row in list(range(dataT.shape[1])):
+                if dataT[col][row] in self.nodeSymbols:
+                    if key is None:
+                        key = self.constructKey(col + xoffset, row + yoffset)
+                    else:
+                        otherkey = self.constructKey(col + xoffset, row + yoffset)
+                        self.nodesLUT[key].neighbors[DOWN] = self.nodesLUT[otherkey]
+                        self.nodesLUT[otherkey].neighbors[UP] = self.nodesLUT[key]
+                        key = otherkey
+                elif dataT[col][row] not in self.pathSymbols:
+                    key = None
+
