@@ -20,3 +20,43 @@ class Spritesheet(object):
         y *= TILEHEIGHT
         self.sheet.set_clip(pygame.Rect(x, y, width, height))
         return self.sheet.subsurface(self.sheet.get_clip())
+
+
+class PacmanSprites(Spritesheet):
+    def __init__(self, entity):
+        Spritesheet.__init__(self)
+        self.entity = entity
+        self.entity.image = self.getStartImage()
+
+    def getStartImage(self):
+        return self.getImage(8, 0)
+
+    def getImage(self, x, y):
+        return Spritesheet.getImage(self, x, y, 2*TILEWIDTH, 2*TILEHEIGHT)
+
+
+class GhostSprites(Spritesheet):
+    def __init__(self, entity):
+        Spritesheet.__init__(self)
+        self.x = {BLINKY: 0, PINKY: 2, INKY: 4, CLYDE: 6}
+        self.entity = entity
+        self.entity.image = self.getStartImage()
+
+    def getStartImage(self):
+        return self.getImage(self.x[self.entity.name], 4)
+
+    def getImage(self, x, y):
+        return Spritesheet.getImage(self, x, y, 2 * TILEWIDTH, 2 * TILEHEIGHT)
+
+
+class FruitSprites(Spritesheet):
+    def __init__(self, entity):
+        Spritesheet.__init__(self)
+        self.entity = entity
+        self.entity.image = self.getStartImage()
+
+    def getStartImage(self):
+        return self.getImage(16, 8)
+
+    def getImage(self, x, y):
+        return Spritesheet.getImage(self, x, y, 2*TILEWIDTH, 2*TILEHEIGHT)
