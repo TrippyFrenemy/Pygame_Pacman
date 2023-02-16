@@ -33,6 +33,7 @@ class Ghost(Entity):
         return directions[index]
 
     def update(self, dt):
+        self.sprites.update(dt)
         self.mode.update(dt)
         if self.mode.current is SCATTER:
             self.scatter()
