@@ -27,8 +27,8 @@ class PacmanSprites(Spritesheet):
         self.entity = entity
         self.entity.image = self.getStartImage()
         self.animations = {}
-        self.stopimage = (8, 0)
         self.defineAnimations()
+        self.stopimage = (8, 0)
 
     def getStartImage(self):
         return self.getImage(8, 0)
