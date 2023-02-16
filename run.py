@@ -22,18 +22,17 @@ class GameController(object):
         self.background_flash = None
         self.clock = pygame.time.Clock()
         self.fruit = None
-        self.level = 1
+        self.level = 0
         self.lives = 5
         self.pause = Pause(True)
         self.score = 0
         self.textgroup = TextGroup()
         self.lifesprites = LifeSprites(self.lives)
-
         self.flashBG = False
         self.flashTime = 0.2
         self.flashTimer = 0
-
         self.fruitCaptured = []
+        self.fruitNode = None
         self.mazedata = MazeData()
 
 
@@ -132,8 +131,8 @@ class GameController(object):
     def checkFruitEvents(self):
         if self.pellets.numEaten == 50 or self.pellets.numEaten == 140:
             if self.fruit is None:
-                self.fruit = Fruit(self.nodes.getNodeFromTiles(9, 20))
-                print(self.fruit)
+                self.fruit = Fruit(self.nodes.getNodeFromTiles(9, 20), self.level)
+                #print(self.fruit)
         if self.fruit is not None:
             if self.pacman.collideCheck(self.fruit):
                 self.updateScore(self.fruit.points)
