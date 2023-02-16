@@ -59,7 +59,7 @@ class GameController(object):
     def startGame(self):
         self.setBackground()
 
-        self.mazesprites = MazeSprites("maze1.txt")
+        self.mazesprites = MazeSprites("maze1.txt", "maze1_rotation.txt")
         self.background = self.mazesprites.constructBackground(self.background, self.level % 5)
 
         self.nodes = NodeGroup("maze1.txt")
