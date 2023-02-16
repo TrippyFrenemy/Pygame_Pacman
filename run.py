@@ -59,6 +59,16 @@ class GameController(object):
         self.ghosts.clyde.setStartNode(self.nodes.getNodeFromTiles(4 + 11.5, 3 + 14))
         self.ghosts.setSpawnNode(self.nodes.getNodeFromTiles(2+11.5, 3+14))
 
+        self.nodes.denyHomeAccess(self.pacman)
+        self.nodes.denyHomeAccessList(self.ghosts)
+        self.nodes.denyAccessList(2 + 11.5, 3 + 14, LEFT, self.ghosts)
+        self.nodes.denyAccessList(2 + 11.5, 3 + 14, RIGHT, self.ghosts)
+        self.ghosts.inky.startNode.denyAccess(RIGHT, self.ghosts.inky)
+        self.ghosts.clyde.startNode.denyAccess(LEFT, self.ghosts.clyde)
+        self.nodes.denyAccessList(12, 14, UP, self.ghosts)
+        self.nodes.denyAccessList(15, 14, UP, self.ghosts)
+        self.nodes.denyAccessList(12, 26, UP, self.ghosts)
+        self.nodes.denyAccessList(15, 26, UP, self.ghosts)
 
     def update(self):
         dt = self.clock.tick(30) / 1000.0
