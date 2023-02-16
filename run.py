@@ -25,6 +25,7 @@ class GameController(object):
         self.score = 0
         self.textgroup = TextGroup()
         self.lifesprites = LifeSprites(self.lives)
+        self.fruitCaptured = []
 
     def restartGame(self):
         self.lives = 5
@@ -37,6 +38,7 @@ class GameController(object):
         self.textgroup.updateLevel(self.level)
         self.textgroup.showText(READYTXT)
         self.lifesprites.resetLives(self.lives)
+        self.fruitCaptured = []
 
     def resetLevel(self):
         self.pause.paused = True
@@ -114,6 +116,13 @@ class GameController(object):
             if self.pacman.collideCheck(self.fruit):
                 self.updateScore(self.fruit.points)
                 self.textgroup.addText(str(self.fruit.points), WHITE, self.fruit.position.x, self.fruit.position.y, 8, time=1)
+                fruitCaptured = False
+                for fruit in self.fruitCaptured:
+                    if fruit.get_offset() == self.fruit.image.get_offset():
+                        fruitCaptured = True
+                        break
+                if not fruitCaptured:
+                    self.fruitCaptured.append(self.fruit.image)
                 self.fruit = None
             elif self.fruit.destroy:
                 self.fruit = None
@@ -146,6 +155,11 @@ class GameController(object):
             x = self.lifesprites.images[i].get_width() * i
             y = SCREENHEIGHT - self.lifesprites.images[i].get_height()
             self.screen.blit(self.lifesprites.images[i], (x, y))
+
+        for i in range(len(self.fruitCaptured)):
+            x = SCREENWIDTH - self.fruitCaptured[i].get_width() * (i + 1)
+            y = SCREENHEIGHT - self.fruitCaptured[i].get_height()
+            self.screen.blit(self.fruitCaptured[i], (x, y))
 
         pygame.display.update()
 
