@@ -53,3 +53,12 @@ class Maze2(MazeBase):
         self.fruitStart = (11, 20)
         self.ghostNodeDeny = {UP:((9, 14), (18, 14), (11, 23), (16, 23)), LEFT:(self.addOffset(2, 3),),
                               RIGHT:(self.addOffset(2, 3),)}
+
+
+class MazeData(object):
+    def __init__(self):
+        self.obj = None
+        self.mazedict = {0:Maze1, 1:Maze2}
+
+    def loadMaze(self, level):
+        self.obj = self.mazedict[level%len(self.mazedict)]()
