@@ -15,9 +15,7 @@ class Spritesheet(object):
         width = int(self.sheet.get_width() / BASETILEWIDTH * TILEWIDTH)
         height = int(self.sheet.get_height() / BASETILEHEIGHT * TILEHEIGHT)
         self.sheet = pygame.transform.scale(self.sheet, (width, height))
-        self.animations = {}
-        self.defineAnimations()
-        self.stopimage = (8, 0)
+
 
     def getImage(self, x, y, width, height):
         x *= TILEWIDTH
@@ -31,6 +29,9 @@ class PacmanSprites(Spritesheet):
         Spritesheet.__init__(self)
         self.entity = entity
         self.entity.image = self.getStartImage()
+        self.animations = {}
+        self.stopimage = (8, 0)
+        self.defineAnimations()
 
     def getStartImage(self):
         return self.getImage(8, 0)
