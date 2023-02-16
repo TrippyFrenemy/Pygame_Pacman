@@ -18,6 +18,7 @@ class GameController(object):
         self.fruit = None
         self.level = 0
         self.lives = 5
+        self.pause = Pause(True)
 
     def restartGame(self):
         self.lives = 5
