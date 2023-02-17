@@ -7,7 +7,7 @@ except ImportError:
     module_failed = True
 
 
-# python -m unittest -v tests/test_pacman.py
+# In console: python -m unittest -v tests/test_pacman.py
 class TestController(unittest.TestCase):
     def setUp(self):
         if module_failed:
