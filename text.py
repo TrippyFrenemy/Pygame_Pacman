@@ -2,6 +2,7 @@ import pygame
 from vector import Vector2
 from constants import *
 
+
 class Text(object):
     def __init__(self, text, color, x, y, size, time=None, id=None, visible=True):
         self.id = id

@@ -35,7 +35,6 @@ class GameController(object):
         self.fruitNode = None
         self.mazedata = MazeData()
 
-
     def restartGame(self):
         self.lives = 5
         self.level = 0
@@ -132,11 +131,11 @@ class GameController(object):
         if self.pellets.numEaten == 50 or self.pellets.numEaten == 140:
             if self.fruit is None:
                 self.fruit = Fruit(self.nodes.getNodeFromTiles(9, 20), self.level)
-                #print(self.fruit)
         if self.fruit is not None:
             if self.pacman.collideCheck(self.fruit):
                 self.updateScore(self.fruit.points)
-                self.textgroup.addText(str(self.fruit.points), WHITE, self.fruit.position.x, self.fruit.position.y, 8, time=1)
+                self.textgroup.addText(str(self.fruit.points), WHITE, self.fruit.position.x, self.fruit.position.y, 8,
+                                       time=1)
                 fruitCaptured = False
                 for fruit in self.fruitCaptured:
                     if fruit.get_offset() == self.fruit.image.get_offset():

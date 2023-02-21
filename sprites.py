@@ -13,7 +13,6 @@ class Spritesheet(object):
         height = int(self.sheet.get_height() / BASETILEHEIGHT * TILEHEIGHT)
         self.sheet = pygame.transform.scale(self.sheet, (width, height))
 
-
     def getImage(self, x, y, width, height):
         x *= TILEWIDTH
         y *= TILEHEIGHT
@@ -46,7 +45,7 @@ class PacmanSprites(Spritesheet):
             speed=6, loop=False)
 
     def update(self, dt):
-        if self.entity.alive == True:
+        if self.entity.alive:
             if self.entity.direction == LEFT:
                 self.entity.image = self.getImage(*self.animations[LEFT].update(dt))
                 self.stopimage = (8, 0)
@@ -131,7 +130,7 @@ class LifeSprites(Spritesheet):
     def resetLives(self, numlives):
         self.images = []
         for i in range(numlives):
-            self.images.append(self.getImage(0,0))
+            self.images.append(self.getImage(0, 0))
 
     def getImage(self, x, y):
         return Spritesheet.getImage(self, x, y, 2*TILEWIDTH, 2*TILEHEIGHT)
@@ -166,4 +165,3 @@ class MazeSprites(Spritesheet):
 
     def rotate(self, sprite, value):
         return pygame.transform.rotate(sprite, value * 90)
-

@@ -3,10 +3,11 @@ import numpy as np
 from vector import Vector2
 from constants import *
 
+
 class Node(object):
     def __init__(self, x, y):
         self.position = Vector2(x, y)
-        self.neighbors = {UP:None, DOWN:None, LEFT:None, RIGHT:None, PORTAL:None}
+        self.neighbors = {UP: None, DOWN: None, LEFT: None, RIGHT: None, PORTAL: None}
         self.access = {UP: [PACMAN, BLINKY, PINKY, INKY, CLYDE, FRUIT],
                        DOWN: [PACMAN, BLINKY, PINKY, INKY, CLYDE, FRUIT],
                        LEFT: [PACMAN, BLINKY, PINKY, INKY, CLYDE, FRUIT],
