@@ -1,6 +1,6 @@
 import pygame
-from pygame.locals import *
-from constants import *
+from pygame import K_UP, K_DOWN, K_LEFT, K_RIGHT
+from constants import PACMAN, YELLOW, LEFT, STOP, PORTAL, UP, DOWN, RIGHT
 from entity import Entity
 from sprites import PacmanSprites
 

@@ -1,5 +1,6 @@
 import pygame
-from constants import *
+from constants import BASETILEWIDTH, TILEWIDTH, BASETILEHEIGHT, TILEHEIGHT, LEFT, RIGHT, UP, DOWN, DEATH, STOP, BLINKY, \
+    PINKY, INKY, CLYDE, SCATTER, CHASE, FREIGHT, SPAWN
 import numpy as np
 from animation import Animator
 
@@ -117,6 +118,7 @@ class FruitSprites(Spritesheet):
 
     def getImage(self, x, y):
         return Spritesheet.getImage(self, x, y, 2*TILEWIDTH, 2*TILEHEIGHT)
+
 
 class LifeSprites(Spritesheet):
     def __init__(self, numlives):

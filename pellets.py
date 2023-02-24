@@ -1,6 +1,6 @@
 import pygame
 from vector import Vector2
-from constants import *
+from constants import PELLET, TILEHEIGHT, TILEWIDTH, WHITE, POWERPELLET
 import numpy as np
 
 

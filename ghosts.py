@@ -1,5 +1,6 @@
 from vector import Vector2
-from constants import *
+from constants import GHOST, TILEWIDTH, SCATTER, CHASE, FREIGHT, DOWN, SPAWN, BLINKY, RED, PINKY, PINK, NCOLS, INKY, \
+    TEAL, TILEHEIGHT, NROWS, CLYDE, ORANGE
 from entity import Entity
 from modes import ModeController
 from sprites import GhostSprites

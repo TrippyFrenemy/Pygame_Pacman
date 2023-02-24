@@ -1,6 +1,6 @@
 import pygame
 from vector import Vector2
-from constants import *
+from constants import READYTXT, TILEHEIGHT, SCORETXT, LEVELTXT, PAUSETXT, GAMEOVERTXT, WHITE, YELLOW, TILEWIDTH
 
 
 class Text(object):

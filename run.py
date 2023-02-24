@@ -1,6 +1,7 @@
 import pygame
-from pygame.locals import *
-from constants import *
+from pygame import QUIT, KEYDOWN, K_SPACE
+from constants import SCREENSIZE, READYTXT, BLACK, RIGHT, LEFT, WHITE, PAUSETXT, SCREENHEIGHT, SCREENWIDTH, POWERPELLET, \
+    FREIGHT, SPAWN, GAMEOVERTXT
 from pacman import Pacman
 from nodes import NodeGroup
 from pellets import PelletGroup

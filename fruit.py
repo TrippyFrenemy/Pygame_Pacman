@@ -1,5 +1,5 @@
 from entity import Entity
-from constants import *
+from constants import FRUIT, GREEN, RIGHT
 from sprites import FruitSprites
 
 
