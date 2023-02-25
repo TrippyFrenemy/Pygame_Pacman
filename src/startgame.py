@@ -1,7 +1,7 @@
 import pygame
 from pygame import QUIT, KEYDOWN, K_SPACE
-from src.data.constants import SCREENSIZE, READYTXT, BLACK, RIGHT, LEFT, WHITE, PAUSETXT, SCREENHEIGHT, SCREENWIDTH, POWERPELLET, \
-    FREIGHT, SPAWN, GAMEOVERTXT
+from src.data.constants import SCREENSIZE, READYTXT, BLACK, RIGHT, LEFT, WHITE, PAUSETXT, SCREENHEIGHT, SCREENWIDTH, POWERPELLET
+from src.data.constants import FREIGHT, SPAWN, GAMEOVERTXT
 from src.fruit import Fruit
 from src.ghosts import GhostGroup
 from src.mazedata import MazeData
