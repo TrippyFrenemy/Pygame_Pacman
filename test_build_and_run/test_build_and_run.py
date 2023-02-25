@@ -1,5 +1,5 @@
 import pytest
-from startgame import *
+from src.startgame import *
 
 
 # In console: python -m pytest -s -v test_build_and_run/

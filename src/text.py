@@ -1,6 +1,6 @@
 import pygame
-from vector import Vector2
-from constants import READYTXT, TILEHEIGHT, SCORETXT, LEVELTXT, PAUSETXT, GAMEOVERTXT, WHITE, YELLOW, TILEWIDTH
+from src.vector import Vector2
+from src.data.constants import READYTXT, TILEHEIGHT, SCORETXT, LEVELTXT, PAUSETXT, GAMEOVERTXT, WHITE, YELLOW, TILEWIDTH
 
 
 class Text(object):
@@ -15,7 +15,7 @@ class Text(object):
         self.lifespan = time
         self.label = None
         self.destroy = False
-        self.setupFont("Font.ttf")
+        self.setupFont("src/data/Font.ttf")
         self.createLabel()
 
     def setupFont(self, fontpath):

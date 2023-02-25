@@ -1,4 +1,4 @@
-from constants import UP, DOWN, LEFT, RIGHT
+from src.data.constants import UP, DOWN, LEFT, RIGHT
 
 
 class MazeBase(object):
@@ -31,7 +31,7 @@ class MazeBase(object):
 class Maze1(MazeBase):
     def __init__(self):
         MazeBase.__init__(self)
-        self.name = "maze1"
+        self.name = "src/data/maze1"
         self.portalPairs = {0: ((0, 17), (27, 17))}
         self.homeoffset = (11.5, 14)
         self.homenodeconnectLeft = (12, 14)
@@ -45,7 +45,7 @@ class Maze1(MazeBase):
 class Maze2(MazeBase):
     def __init__(self):
         MazeBase.__init__(self)
-        self.name = "maze2"
+        self.name = "src/data/maze2"
         self.portalPairs = {0: ((0, 4), (27, 4)), 1: ((0, 26), (27, 26))}
         self.homeoffset = (11.5, 14)
         self.homenodeconnectLeft = (9, 14)

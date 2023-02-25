@@ -1,7 +1,7 @@
 import unittest
 
 try:
-    from startgame import GameController
+    from src.startgame import GameController
     module_failed = False
 except ImportError:
     module_failed = True

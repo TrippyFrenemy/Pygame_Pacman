@@ -1,7 +1,7 @@
 import pygame
 import numpy as np
-from vector import Vector2
-from constants import UP, DOWN, LEFT, RIGHT, PORTAL, PACMAN, BLINKY, PINKY, INKY, CLYDE, FRUIT, TILEWIDTH, TILEHEIGHT, \
+from src.vector import Vector2
+from src.data.constants import UP, DOWN, LEFT, RIGHT, PORTAL, PACMAN, BLINKY, PINKY, INKY, CLYDE, FRUIT, TILEWIDTH, TILEHEIGHT, \
     WHITE, RED
 
 

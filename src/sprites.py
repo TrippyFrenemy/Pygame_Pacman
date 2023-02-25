@@ -1,13 +1,13 @@
 import pygame
-from constants import BASETILEWIDTH, TILEWIDTH, BASETILEHEIGHT, TILEHEIGHT, LEFT, RIGHT, UP, DOWN, DEATH, STOP, BLINKY, \
+from src.data.constants import BASETILEWIDTH, TILEWIDTH, BASETILEHEIGHT, TILEHEIGHT, LEFT, RIGHT, UP, DOWN, DEATH, STOP, BLINKY, \
     PINKY, INKY, CLYDE, SCATTER, CHASE, FREIGHT, SPAWN
 import numpy as np
-from animation import Animator
+from src.animation import Animator
 
 
 class Spritesheet(object):
     def __init__(self):
-        self.sheet = pygame.image.load("spritesheet.png").convert()
+        self.sheet = pygame.image.load("src/data/spritesheet.png").convert()
         transcolor = self.sheet.get_at((0, 0))
         self.sheet.set_colorkey(transcolor)
         width = int(self.sheet.get_width() / BASETILEWIDTH * TILEWIDTH)

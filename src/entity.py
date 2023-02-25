@@ -1,6 +1,6 @@
 import pygame
-from vector import Vector2
-from constants import UP, DOWN, LEFT, RIGHT, STOP, WHITE, TILEWIDTH, TILEHEIGHT, PORTAL
+from src.vector import Vector2
+from src.data.constants import UP, DOWN, LEFT, RIGHT, STOP, WHITE, TILEWIDTH, TILEHEIGHT, PORTAL
 from random import randint
 
 

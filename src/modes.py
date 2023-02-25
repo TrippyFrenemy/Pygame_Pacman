@@ -1,4 +1,4 @@
-from constants import SCATTER, CHASE, FREIGHT, SPAWN
+from src.data.constants import SCATTER, CHASE, FREIGHT, SPAWN
 
 
 class MainMode(object):

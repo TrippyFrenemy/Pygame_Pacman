@@ -1,9 +1,9 @@
-from vector import Vector2
-from constants import GHOST, TILEWIDTH, SCATTER, CHASE, FREIGHT, DOWN, SPAWN, BLINKY, RED, PINKY, PINK, NCOLS, INKY, \
+from src.vector import Vector2
+from src.data.constants import GHOST, TILEWIDTH, SCATTER, CHASE, FREIGHT, DOWN, SPAWN, BLINKY, RED, PINKY, PINK, NCOLS, INKY, \
     TEAL, TILEHEIGHT, NROWS, CLYDE, ORANGE
-from entity import Entity
-from modes import ModeController
-from sprites import GhostSprites
+from src.entity import Entity
+from src.modes import ModeController
+from src.sprites import GhostSprites
 
 
 class Ghost(Entity):

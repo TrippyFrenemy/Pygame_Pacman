@@ -1,8 +1,8 @@
 import pygame
 from pygame import K_UP, K_DOWN, K_LEFT, K_RIGHT
-from constants import PACMAN, YELLOW, LEFT, STOP, PORTAL, UP, DOWN, RIGHT
-from entity import Entity
-from sprites import PacmanSprites
+from src.data.constants import PACMAN, YELLOW, LEFT, STOP, PORTAL, UP, DOWN, RIGHT
+from src.entity import Entity
+from src.sprites import PacmanSprites
 
 
 class Pacman(Entity):

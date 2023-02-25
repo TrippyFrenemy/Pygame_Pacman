@@ -1,17 +1,17 @@
 import pygame
 from pygame import QUIT, KEYDOWN, K_SPACE
-from constants import SCREENSIZE, READYTXT, BLACK, RIGHT, LEFT, WHITE, PAUSETXT, SCREENHEIGHT, SCREENWIDTH, POWERPELLET, \
+from src.data.constants import SCREENSIZE, READYTXT, BLACK, RIGHT, LEFT, WHITE, PAUSETXT, SCREENHEIGHT, SCREENWIDTH, POWERPELLET, \
     FREIGHT, SPAWN, GAMEOVERTXT
-from fruit import Fruit
-from ghosts import GhostGroup
-from mazedata import MazeData
-from nodes import NodeGroup
-from pacman import Pacman
-from pauser import Pause
-from pellets import PelletGroup
-from sprites import LifeSprites
-from sprites import MazeSprites
-from text import TextGroup
+from src.fruit import Fruit
+from src.ghosts import GhostGroup
+from src.mazedata import MazeData
+from src.nodes import NodeGroup
+from src.pacman import Pacman
+from src.pauser import Pause
+from src.pellets import PelletGroup
+from src.sprites import LifeSprites
+from src.sprites import MazeSprites
+from src.text import TextGroup
 
 
 class GameController(object):
@@ -39,10 +39,10 @@ class GameController(object):
     def restartGame(self):
         self.lives = 5
         self.level = 0
+        self.score = 0
         self.pause.paused = True
         self.fruit = None
         self.startGame()
-        self.score = 0
         self.textgroup.updateScore(self.score)
         self.textgroup.updateLevel(self.level)
         self.textgroup.showText(READYTXT)

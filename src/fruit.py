@@ -1,6 +1,6 @@
-from entity import Entity
-from constants import FRUIT, GREEN, RIGHT
-from sprites import FruitSprites
+from src.entity import Entity
+from src.data.constants import FRUIT, GREEN, RIGHT
+from src.sprites import FruitSprites
 
 
 class Fruit(Entity):
