@@ -10,7 +10,7 @@ class Pellet(object):
         self.position = Vector2(column * TILEWIDTH, row * TILEHEIGHT)
         self.color = WHITE
         self.radius = int(2 * TILEWIDTH / 16)
-        self.collideRadius = int(2 * TILEWIDTH / 16)
+        self.collide_radius = int(2 * TILEWIDTH / 16)
         self.points = 10
         self.visible = True
 
@@ -18,7 +18,7 @@ class Pellet(object):
         if self.visible:
             adjust = Vector2(TILEWIDTH, TILEHEIGHT) / 2
             p = self.position + adjust
-            pygame.draw.circle(screen, self.color, p.asInt(), self.radius)
+            pygame.draw.circle(screen, self.color, p.as_int(), self.radius)
 
 
 class PowerPellet(Pellet):
@@ -27,12 +27,12 @@ class PowerPellet(Pellet):
         self.name = POWERPELLET
         self.radius = int(8 * TILEWIDTH / 16)
         self.points = 50
-        self.flashTime = 0.2
+        self.flash_time = 0.2
         self.timer = 0
 
     def update(self, dt):
         self.timer += dt
-        if self.timer >= self.flashTime:
+        if self.timer >= self.flash_time:
             self.visible = not self.visible
             self.timer = 0
 
@@ -41,15 +41,15 @@ class PelletGroup(object):
     def __init__(self, pelletfile):
         self.pelletList = []
         self.powerpellets = []
-        self.createPelletList(pelletfile)
-        self.numEaten = 0
+        self.create_pellet_list(pelletfile)
+        self.num_eaten = 0
 
     def update(self, dt):
         for powerpellet in self.powerpellets:
             powerpellet.update(dt)
 
-    def createPelletList(self, pelletfile):
-        data = self.readPelletfile(pelletfile)
+    def create_pellet_list(self, pelletfile):
+        data = self.read_pelletfile(pelletfile)
         for row in range(data.shape[0]):
             for col in range(data.shape[1]):
                 if data[row][col] in ['.', '+']:
@@ -59,10 +59,10 @@ class PelletGroup(object):
                     self.pelletList.append(pp)
                     self.powerpellets.append(pp)
 
-    def readPelletfile(self, textfile):
+    def read_pelletfile(self, textfile):
         return np.loadtxt(textfile, dtype='<U1')
 
-    def isEmpty(self):
+    def is_empty(self):
         if len(self.pelletList) == 0:
             return True
         return False

@@ -1,49 +1,49 @@
 import pytest
-from src.startgame import *
+from src.startgame import GameController
 
 
 # In console: python -m pytest -s -v test_build_and_run/
 @pytest.fixture
 def set_up():
     start = GameController()
-    start.startGame()
+    start.start_game()
     return start
 
 
 def test_background(set_up):
-    set_up.setBackground()
+    set_up.set_background()
 
 
 def test_update(set_up):
     set_up.update()
 
 
-def test_checkEvents(set_up):
-    set_up.checkEvents()
-    set_up.checkGhostEvents()
-    set_up.checkPelletEvents()
-    set_up.checkFruitEvents()
+def test_check_events(set_up):
+    set_up.check_events()
+    set_up.check_ghost_events()
+    set_up.check_pellet_events()
+    set_up.check_fruit_events()
 
 
 def test_entities(set_up):
-    set_up.showEntities()
-    set_up.hideEntities()
+    set_up.show_entities()
+    set_up.hide_entities()
 
 
-def test_updatescore(set_up):
+def test_update_score(set_up):
     set_up.update()
 
 
-def test_restartgame(set_up):
-    set_up.restartGame()
+def test_restart_game(set_up):
+    set_up.restart_game()
 
 
-def test_resetLevel(set_up):
-    set_up.resetLevel()
+def test_reset_level(set_up):
+    set_up.reset_level()
 
 
-def test_nextLevel(set_up):
-    set_up.nextLevel()
+def test_next_level(set_up):
+    set_up.next_level()
 
 
 def test_render(set_up):

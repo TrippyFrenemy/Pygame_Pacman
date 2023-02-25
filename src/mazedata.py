@@ -3,43 +3,43 @@ from src.data.constants import UP, DOWN, LEFT, RIGHT
 
 class MazeBase(object):
     def __init__(self):
-        self.portalPairs = {}
-        self.homeoffset = (0, 0)
-        self.ghostNodeDeny = {UP: (), DOWN: (), LEFT: (), RIGHT: ()}
+        self.portal_pairs = {}
+        self.home_offset = (0, 0)
+        self.ghost_node_deny = {UP: (), DOWN: (), LEFT: (), RIGHT: ()}
 
-    def setPortalPairs(self, nodes):
-        for pair in list(self.portalPairs.values()):
-            nodes.setPortalPair(*pair)
+    def set_portal_pairs(self, nodes):
+        for pair in list(self.portal_pairs.values()):
+            nodes.set_portal_pair(*pair)
 
-    def connectHomeNodes(self, nodes):
-        key = nodes.createHomeNodes(*self.homeoffset)
-        nodes.connectHomeNodes(key, self.homenodeconnectLeft, LEFT)
-        nodes.connectHomeNodes(key, self.homenodeconnectRight, RIGHT)
+    def connect_home_nodes(self, nodes):
+        key = nodes.create_home_nodes(*self.home_offset)
+        nodes.connect_home_nodes(key, self.homenodeconnect_left, LEFT)
+        nodes.connect_home_nodes(key, self.homenodeconnect_right, RIGHT)
 
-    def addOffset(self, x, y):
-        return x+self.homeoffset[0], y+self.homeoffset[1]
+    def add_offset(self, x, y):
+        return x + self.home_offset[0], y + self.home_offset[1]
 
-    def denyGhostsAccess(self, ghosts, nodes):
-        nodes.denyAccessList(*(self.addOffset(2, 3) + (LEFT, ghosts)))
-        nodes.denyAccessList(*(self.addOffset(2, 3) + (RIGHT, ghosts)))
+    def deny_ghosts_access(self, ghosts, nodes):
+        nodes.deny_access_list(*(self.add_offset(2, 3) + (LEFT, ghosts)))
+        nodes.deny_access_list(*(self.add_offset(2, 3) + (RIGHT, ghosts)))
 
-        for direction in list(self.ghostNodeDeny.keys()):
-            for values in self.ghostNodeDeny[direction]:
-                nodes.denyAccessList(*(values + (direction, ghosts)))
+        for direction in list(self.ghost_node_deny.keys()):
+            for values in self.ghost_node_deny[direction]:
+                nodes.deny_access_list(*(values + (direction, ghosts)))
 
 
 class Maze1(MazeBase):
     def __init__(self):
         MazeBase.__init__(self)
         self.name = "src/data/maze1"
-        self.portalPairs = {0: ((0, 17), (27, 17))}
-        self.homeoffset = (11.5, 14)
-        self.homenodeconnectLeft = (12, 14)
-        self.homenodeconnectRight = (15, 14)
-        self.pacmanStart = (15, 26)
-        self.fruitStart = (9, 20)
-        self.ghostNodeDeny = {UP: ((12, 14), (15, 14), (12, 26), (15, 26)), LEFT: (self.addOffset(2, 3),),
-                              RIGHT: (self.addOffset(2, 3),)}
+        self.portal_pairs = {0: ((0, 17), (27, 17))}
+        self.home_offset = (11.5, 14)
+        self.homenodeconnect_left = (12, 14)
+        self.homenodeconnect_right = (15, 14)
+        self.pacman_start = (15, 26)
+        self.fruit_start = (9, 20)
+        self.ghost_node_deny = {UP: ((12, 14), (15, 14), (12, 26), (15, 26)), LEFT: (self.add_offset(2, 3),),
+                                RIGHT: (self.add_offset(2, 3),)}
 
 
 class Maze2(MazeBase):
@@ -47,13 +47,13 @@ class Maze2(MazeBase):
         MazeBase.__init__(self)
         self.name = "src/data/maze2"
         self.portalPairs = {0: ((0, 4), (27, 4)), 1: ((0, 26), (27, 26))}
-        self.homeoffset = (11.5, 14)
-        self.homenodeconnectLeft = (9, 14)
-        self.homenodeconnectRight = (18, 14)
-        self.pacmanStart = (16, 26)
-        self.fruitStart = (11, 20)
-        self.ghostNodeDeny = {UP: ((9, 14), (18, 14), (11, 23), (16, 23)), LEFT: (self.addOffset(2, 3),),
-                              RIGHT: (self.addOffset(2, 3),)}
+        self.home_offset = (11.5, 14)
+        self.homenodeconnect_left = (9, 14)
+        self.homenodeconnect_right = (18, 14)
+        self.pacman_start = (16, 26)
+        self.fruit_start = (11, 20)
+        self.ghost_node_deny = {UP: ((9, 14), (18, 14), (11, 23), (16, 23)), LEFT: (self.add_offset(2, 3),),
+                                RIGHT: (self.add_offset(2, 3),)}
 
 
 class MazeData(object):
@@ -61,5 +61,5 @@ class MazeData(object):
         self.obj = None
         self.mazedict = {0: Maze1, 1: Maze2}
 
-    def loadMaze(self, level):
+    def load_maze(self, level):
         self.obj = self.mazedict[level % len(self.mazedict)]()

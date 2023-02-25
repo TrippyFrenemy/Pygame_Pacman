@@ -13,35 +13,35 @@ class TestController(unittest.TestCase):
         if module_failed:
             self.skipTest('module doesnt exist')
         self.start = GameController()
-        self.start.startGame()
+        self.start.start_game()
 
     def test_background(self):
-        self.start.setBackground()
+        self.start.set_background()
 
     def test_update(self):
         self.start.update()
 
-    def test_checkEvents(self):
-        self.start.checkEvents()
-        self.start.checkGhostEvents()
-        self.start.checkPelletEvents()
-        self.start.checkFruitEvents()
+    def test_check_events(self):
+        self.start.check_events()
+        self.start.check_ghost_events()
+        self.start.check_pellet_events()
+        self.start.check_fruit_events()
 
     def test_entities(self):
-        self.start.showEntities()
-        self.start.hideEntities()
+        self.start.show_entities()
+        self.start.hide_entities()
 
     def test_updatescore(self):
         self.start.update()
 
-    def test_restartgame(self):
-        self.start.restartGame()
+    def test_restart_game(self):
+        self.start.restart_game()
 
-    def test_resetLevel(self):
-        self.start.resetLevel()
+    def test_reset_level(self):
+        self.start.reset_level()
 
-    def test_nextLevel(self):
-        self.start.nextLevel()
+    def test_next_level(self):
+        self.start.next_level()
 
     def test_render(self):
         self.start.render()

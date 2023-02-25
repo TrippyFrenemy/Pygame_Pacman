@@ -4,8 +4,8 @@ from src.data.constants import READYTXT, TILEHEIGHT, SCORETXT, LEVELTXT, PAUSETX
 
 
 class Text(object):
-    def __init__(self, text, color, x, y, size, time=None, id=None, visible=True):
-        self.id = id
+    def __init__(self, text, color, x, y, size, time=None, _id=None, visible=True):
+        self._id = _id
         self.text = text
         self.color = color
         self.size = size
@@ -15,18 +15,18 @@ class Text(object):
         self.lifespan = time
         self.label = None
         self.destroy = False
-        self.setupFont("src/data/Font.ttf")
-        self.createLabel()
+        self.setup_font("src/data/Font.ttf")
+        self.create_label()
 
-    def setupFont(self, fontpath):
+    def setup_font(self, fontpath):
         self.font = pygame.font.Font(fontpath, self.size)
 
-    def createLabel(self):
+    def create_label(self):
         self.label = self.font.render(self.text, 1, self.color)
 
-    def setText(self, newtext):
+    def set_text(self, newtext):
         self.text = str(newtext)
-        self.createLabel()
+        self.create_label()
 
     def update(self, dt):
         if self.lifespan is not None:
@@ -38,7 +38,7 @@ class Text(object):
 
     def render(self, screen):
         if self.visible:
-            x, y = self.position.asTuple()
+            x, y = self.position.as_tuple()
             screen.blit(self.label, (x, y))
 
 
@@ -46,51 +46,51 @@ class TextGroup(object):
     def __init__(self):
         self.nextid = 10
         self.alltext = {}
-        self.setupText()
-        self.showText(READYTXT)
+        self.setup_text()
+        self.show_text(READYTXT)
 
-    def addText(self, text, color, x, y, size, time=None, id=None):
+    def add_text(self, text, color, x, y, size, time=None, _id=None):
         self.nextid += 1
-        self.alltext[self.nextid] = Text(text, color, x, y, size, time=time, id=id)
+        self.alltext[self.nextid] = Text(text, color, x, y, size, time=time, _id=_id)
         return self.nextid
 
-    def removeText(self, id):
-        self.alltext.pop(id)
+    def remove_text(self, _id):
+        self.alltext.pop(_id)
 
-    def setupText(self):
+    def setup_text(self):
         size = TILEHEIGHT
         self.alltext[SCORETXT] = Text("0".zfill(8), WHITE, 0, TILEHEIGHT, size)
         self.alltext[LEVELTXT] = Text(str(1).zfill(3), WHITE, 23 * TILEWIDTH, TILEHEIGHT, size)
         self.alltext[READYTXT] = Text("READY!", YELLOW, 11.25 * TILEWIDTH, 20 * TILEHEIGHT, size, visible=False)
         self.alltext[PAUSETXT] = Text("PAUSED!", YELLOW, 10.625 * TILEWIDTH, 20 * TILEHEIGHT, size, visible=False)
         self.alltext[GAMEOVERTXT] = Text("GAMEOVER!", YELLOW, 10 * TILEWIDTH, 20 * TILEHEIGHT, size, visible=False)
-        self.addText("SCORE", WHITE, 0, 0, size)
-        self.addText("LEVEL", WHITE, 23 * TILEWIDTH, 0, size)
+        self.add_text("SCORE", WHITE, 0, 0, size)
+        self.add_text("LEVEL", WHITE, 23 * TILEWIDTH, 0, size)
 
     def update(self, dt):
         for tkey in list(self.alltext.keys()):
             self.alltext[tkey].update(dt)
             if self.alltext[tkey].destroy:
-                self.removeText(tkey)
+                self.remove_text(tkey)
 
-    def showText(self, id):
-        self.hideText()
-        self.alltext[id].visible = True
+    def show_text(self, _id):
+        self.hide_text()
+        self.alltext[_id].visible = True
 
-    def hideText(self):
+    def hide_text(self):
         self.alltext[READYTXT].visible = False
         self.alltext[PAUSETXT].visible = False
         self.alltext[GAMEOVERTXT].visible = False
 
-    def updateScore(self, score):
-        self.updateText(SCORETXT, str(score).zfill(8))
+    def update_score(self, score):
+        self.update_text(SCORETXT, str(score).zfill(8))
 
-    def updateLevel(self, level):
-        self.updateText(LEVELTXT, str(level + 1).zfill(3))
+    def update_level(self, level):
+        self.update_text(LEVELTXT, str(level + 1).zfill(3))
 
-    def updateText(self, id, value):
-        if id in self.alltext.keys():
-            self.alltext[id].setText(value)
+    def update_text(self, _id, value):
+        if _id in self.alltext.keys():
+            self.alltext[_id].set_text(value)
 
     def render(self, screen):
         for tkey in list(self.alltext.keys()):

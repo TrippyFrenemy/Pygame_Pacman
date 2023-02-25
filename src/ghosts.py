@@ -12,22 +12,22 @@ class Ghost(Entity):
         self.name = GHOST
         self.points = 200
         self.goal = Vector2()
-        self.directionMethod = self.goalDirection
+        self.direction_method = self.goal_direction
         self.pacman = pacman
         self.mode = ModeController(self)
         self.blinky = blinky
-        self.homeNode = node
+        self.home_node = node
 
     def reset(self):
         Entity.reset(self)
         self.points = 200
-        self.directionMethod = self.goalDirection
+        self.direction_method = self.goal_direction
 
-    def goalDirection(self, directions):
+    def goal_direction(self, directions):
         distances = []
         for direction in directions:
             vec = self.node.position + self.directions[direction] * TILEWIDTH - self.goal
-            distances.append(vec.magnitudeSquared())
+            distances.append(vec.magnitude_squared())
         index = distances.index(min(distances))
         return directions[index]
 
@@ -46,28 +46,28 @@ class Ghost(Entity):
     def chase(self):
         self.goal = self.pacman.position
 
-    def startFreight(self):
-        self.mode.setFreightMode()
+    def start_freight(self):
+        self.mode.set_freight_mode()
         if self.mode.current == FREIGHT:
-            self.setSpeed(50)
-            self.directionMethod = self.randomDirection
+            self.set_speed(50)
+            self.direction_method = self.random_direction
 
-    def normalMode(self):
-        self.setSpeed(100)
-        self.directionMethod = self.goalDirection
-        self.homeNode.denyAccess(DOWN, self)
+    def normal_mode(self):
+        self.set_speed(100)
+        self.direction_method = self.goal_direction
+        self.home_node.deny_access(DOWN, self)
 
     def spawn(self):
-        self.goal = self.spawnNode.position
+        self.goal = self.spawn_node.position
 
-    def setSpawnNode(self, node):
-        self.spawnNode = node
+    def set_spawn_node(self, node):
+        self.spawn_node = node
 
-    def startSpawn(self):
-        self.mode.setSpawnMode()
+    def start_spawn(self):
+        self.mode.set_spawn_mode()
         if self.mode.current == SPAWN:
-            self.setSpeed(150)
-            self.directionMethod = self.goalDirection
+            self.set_speed(150)
+            self.direction_method = self.goal_direction
             self.spawn()
 
 
@@ -86,20 +86,20 @@ class GhostGroup(object):
         for ghost in self:
             ghost.update(dt)
 
-    def startFreight(self):
+    def start_freight(self):
         for ghost in self:
-            ghost.startFreight()
-        self.resetPoints()
+            ghost.start_freight()
+        self.reset_points()
 
-    def setSpawnNode(self, node):
+    def set_spawn_node(self, node):
         for ghost in self:
-            ghost.setSpawnNode(node)
+            ghost.set_spawn_node(node)
 
-    def updatePoints(self):
+    def update_points(self):
         for ghost in self:
             ghost.points *= 2
 
-    def resetPoints(self):
+    def reset_points(self):
         for ghost in self:
             ghost.points = 200
 
@@ -170,7 +170,7 @@ class Clyde(Ghost):
 
     def chase(self):
         d = self.pacman.position - self.position
-        ds = d.magnitudeSquared()
+        ds = d.magnitude_squared()
         if ds <= (TILEWIDTH * 8)**2:
             self.scatter()
         else:

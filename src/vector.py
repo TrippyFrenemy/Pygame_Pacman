@@ -33,19 +33,19 @@ class Vector2(object):
                 return True
         return False
 
-    def magnitudeSquared(self):
+    def magnitude_squared(self):
         return self.x ** 2 + self.y ** 2
 
     def magnitude(self):
-        return math.sqrt(self.magnitudeSquared())
+        return math.sqrt(self.magnitude_squared())
 
     def copy(self):
         return Vector2(self.x, self.y)
 
-    def asTuple(self):
+    def as_tuple(self):
         return self.x, self.y
 
-    def asInt(self):
+    def as_int(self):
         return int(self.x), int(self.y)
 
     def __str__(self):
