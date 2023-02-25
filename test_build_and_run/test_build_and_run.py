@@ -2,7 +2,7 @@ import pytest
 from startgame import *
 
 
-# In console: python -s -m pytest test_build_and_run/
+# In console: python -m pytest -s -v test_build_and_run/
 @pytest.fixture
 def set_up():
     start = GameController()
