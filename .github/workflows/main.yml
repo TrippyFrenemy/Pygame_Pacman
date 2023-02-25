@@ -23,6 +23,6 @@ jobs:
       - name: Lint with flake8
         run: |
           # exit-zero treats all errors as warnings. The GitHub editor is 130 chars wide
-          flake8 . --count --exit-zero --max-complexity=12 --max-line-length=130 --statistics
+          flake8 . --max-complexity=12 --max-line-length=130 --statistics
       - name: Test with pytest
         run: pytest -s -v
