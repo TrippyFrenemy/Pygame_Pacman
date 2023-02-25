@@ -1,5 +1,6 @@
 import pygame
 from pygame import QUIT, KEYDOWN, K_SPACE
+import os
 from src.data.constants import SCREENSIZE, READYTXT, BLACK, RIGHT, LEFT, WHITE, PAUSETXT, SCREENHEIGHT, SCREENWIDTH, POWERPELLET
 from src.data.constants import FREIGHT, SPAWN, GAMEOVERTXT
 from src.fruit import Fruit
@@ -16,6 +17,7 @@ from src.text import TextGroup
 
 class GameController(object):
     def __init__(self):
+        os.environ["SDL_VIDEODRIVER"] = "dummy"
         pygame.init()
         self.screen = pygame.display.set_mode(SCREENSIZE, 0, 32)
         self.background = None
