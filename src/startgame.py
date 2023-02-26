@@ -17,7 +17,7 @@ from src.text import TextGroup
 
 class GameController(object):
     def __init__(self):
-        os.environ["SDL_VIDEODRIVER"] = "dummy"
+        #os.environ["SDL_VIDEODRIVER"] = "dummy"
         pygame.init()
         self.screen = pygame.display.set_mode(SCREENSIZE, 0, 32)
         self.background = None
