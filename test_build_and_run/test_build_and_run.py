@@ -1,10 +1,11 @@
 import pytest
 from src.startgame import GameController
-
+import os
 
 # In console: python -m pytest -s -v --html=reports/report_pytest.html test_build_and_run/
 @pytest.fixture
 def set_up():
+    os.environ["SDL_VIDEODRIVER"] = "dummy"
     start = GameController()
     start.start_game()
     return start
