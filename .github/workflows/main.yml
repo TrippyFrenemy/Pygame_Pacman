@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
-        run: python -m pytest -s -v --html=reports/report_pytest.html test_build_and_run/
+        run: python -m pytest -s -v test_build_and_run/
       - name: Lint with Flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
